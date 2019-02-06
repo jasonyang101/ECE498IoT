@@ -2,4 +2,4 @@ import numpy as np
 import tensorflow as tf
 
 def function(shape):
-    return tf.random_uniform((4,1))
+    return tf.Variable(tf.random_uniform((4,1)))

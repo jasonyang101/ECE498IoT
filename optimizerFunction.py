@@ -1,3 +1,4 @@
 import tensorflow as tf
 def function(loss,lr):
-    return tf.train.AdamOptimizer(lr)
+    return tf.train.AdamOptimizer(lr).minimize(loss)
+
