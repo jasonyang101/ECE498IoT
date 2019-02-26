@@ -2,6 +2,7 @@ import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 import matplotlib
+
 fashion_mnist = keras.datasets.fashion_mnist
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
 
@@ -24,7 +25,7 @@ model.summary()
 
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 hist = model.fit(train_images, train_labels, epochs=10)
-
+model.summary()
 model.save("keras_model.h5")
 
 

@@ -172,9 +172,10 @@ with tf.Session() as sess:
         acc_out.append("{:.3f}".format(acc))
     print(loss_out)
     print(acc_out)
-
-
-
+    cwd = os.getcwd()
+    path = os.path.join(cwd, 'simple')
+    shutil.rmtree(path, ignore_errors=True)
+    tf.
 
     print("Optimization Finished!")
 
