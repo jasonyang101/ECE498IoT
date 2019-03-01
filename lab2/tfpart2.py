@@ -31,7 +31,7 @@ display_step = 32
 # me defined
 total_vals = 60000
 curr_rand = np.arange(60000)
-epochs = 25
+epochs = 10
 # Network Parameters
 num_input = 784 # MNIST data input (img shape: 28*28)
 num_classes = 10 # MNIST total classes (0-9 digits)
@@ -113,11 +113,11 @@ weights = {
 }
 
 biases = {
-    'bc1': tf.Variable(tf.random_normal([3], stddev=0.1)),
-    'bc2': tf.Variable(tf.random_normal([3], stddev=0.1)),
-    'bd1': tf.Variable(tf.random_normal([100], stddev=0.1)),
-    'bd2': tf.Variable(tf.random_normal([50], stddev=0.1)),
-    'bd3': tf.Variable(tf.random_normal([10], stddev=0.1)),
+    'bc1': tf.Variable(tf.random_normal([3])),
+    'bc2': tf.Variable(tf.random_normal([3])),
+    'bd1': tf.Variable(tf.random_normal([100])),
+    'bd2': tf.Variable(tf.random_normal([50])),
+    'bd3': tf.Variable(tf.random_normal([10])),
 }
 
 # Construct model
@@ -163,8 +163,8 @@ with tf.Session() as sess:
                       "{:.4f}".format(loss) + ", Training Accuracy= " + \
                       "{:.3f}".format(acc))
         print("epoch done")
-        loss, acc = sess.run([loss_op, accuracy], feed_dict={X: test_images[:256],
-                                                             Y: test_labels[:256],
+        loss, acc = sess.run([loss_op, accuracy], feed_dict={X: test_images,
+                                                             Y: test_labels,
                                                              keep_prob: 1.0})
         print("Loss: " + "{:.4f}".format(loss))
         loss_out.append("{:.4f}".format(loss))
@@ -172,15 +172,12 @@ with tf.Session() as sess:
         acc_out.append("{:.3f}".format(acc))
     print(loss_out)
     print(acc_out)
-    cwd = os.getcwd()
-    path = os.path.join(cwd, 'simple')
-    shutil.rmtree(path, ignore_errors=True)
-    tf.
+
 
     print("Optimization Finished!")
 
     # Calculate accuracy for 256 MNIST test images
     print("Testing Accuracy:", \
-        sess.run(accuracy, feed_dict={X: test_images[:256],
-                                      Y: test_labels[:256],
+        sess.run(accuracy, feed_dict={X: test_images,
+                                      Y: test_labels,
                                       keep_prob: 1.0}))

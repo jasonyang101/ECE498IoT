@@ -22,11 +22,11 @@ def load_dataset(path):
     return data
 
 test_images, id = get_testset()
+print "TESTID: " + id
 test_images = np.expand_dims(test_images, axis=3)
-new_model = keras.models.load_model('keras_model.h5')
-new_model.summary()
+new_model6 = keras.models.load_model('keras_model.h5')
 out = []
-predictions = new_model.predict(test_images)
+predictions = new_model6.predict(test_images)
 for i in range(len(predictions)):
     out.append(np.argmax(predictions[i]))
 predict = ""
@@ -37,4 +37,4 @@ print predict
 values = {'request': 'verify', 'netid':'jyang223', 'testset_id':id,'prediction':predict}
 r_2 = requests.post(url,data=values,allow_redirects=True)
 print r_2.text
-print "Percentage:" + str(float(int(r_2.text)/1000.0))
+print "Percentage:" + str(float(int(r_2.text)/10.0))
